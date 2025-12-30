@@ -2581,3 +2581,6 @@ function refreshModeUI() {
 
 // 初始化 UI
 refreshModeUI();
+
+window.setModeCasual = setModeCasual;
+window.setModeRanked = setModeRanked;
