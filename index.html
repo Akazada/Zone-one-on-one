@@ -1,0 +1,181 @@
+<div class="app">
+  <header class="top hidden" id="topBar">
+    <div class="title">
+      ZONE：One on One<br>
+      <span style="font-size:14px;opacity:.7">Turn-Based Basketball Duel</span>
+    </div>
+    <div class="meta">
+      <div>回合：<span id="turnNo">1</span></div>
+      <div>球權：<span id="possession">玩家進攻</span></div>
+      <div class="clock">24秒：<span id="clock">24</span></div>
+    </div>
+  </header>
+
+  <!-- HOME SCREEN -->
+  <section id="screenHome" class="panel screen">
+    <div style="text-align:center; padding: 18px 10px;">
+      <div style="font-size:26px; font-weight:900;">ZONE：One on One</div>
+      <div style="opacity:.75; margin-top:6px;">Turn-Based Basketball Duel</div>
+
+      <div style="display:flex; gap:10px; justify-content:center; margin-top:16px; flex-wrap:wrap;">
+        <button id="btnGoBattle" style="min-width:180px;">開始單挑</button>
+        <button id="btnGoCodex" class="ghost" style="min-width:180px;">球員圖鑑</button>
+      </div>
+
+      <div style="opacity:.65; margin-top:14px; font-size:12px;">
+        提示：單挑為 11 分制，每回合 24 秒，超時自動出招。
+      </div>
+    </div>
+  </section>
+  
+ <!-- CODEX SCREEN -->
+<section id="screenCodex" class="panel screen hidden">
+
+  <div class="codexHeader">
+    <h2>球員圖鑑</h2>
+
+    <div class="codexTools">
+      <input id="codexSearch" placeholder="搜尋角色名稱…" />
+
+      <select id="codexSort">
+        <option value="name">名稱</option>
+        <option value="drive">突破</option>
+        <option value="two">中距</option>
+        <option value="three">三分</option>
+        <option value="defense">防守</option>
+        <option value="jump">彈跳</option>
+        <option value="clutch">關鍵</option>
+      </select>
+
+      <button id="codexBack" class="ghost">回首頁</button>
+    </div>
+  </div>
+
+  <!-- ✅ 卡片清單（只會有一個） -->
+  <div class="codexGrid" id="codexGrid"></div>
+
+</section>
+
+<!-- ✅ Modal（只能有一個，放在 section 外） -->
+<div class="modal hidden" id="codexModal">
+  <div class="modalBox">
+
+    <div class="modalHead">
+      <div class="modalTitle" id="codexModalTitle">角色</div>
+      <button class="ghost" id="codexModalClose">關閉</button>
+    </div>
+
+    <div class="modalBody">
+      <div class="pillRow" id="codexTags"></div>
+      <div class="statsGrid" id="codexStats"></div>
+      <div class="desc" id="codexDesc"></div>
+    </div>
+
+  </div>
+</div>
+  
+  <!-- BATTLE SCREEN -->
+ <section id="screenBattle" class="panel screen hidden">
+    <div class="scoreRow">
+      <div class="scoreBox">
+        <div class="label">玩家</div>
+        <div class="name" id="playerName">未選角</div>
+        <div class="score" id="pScore">0</div>
+        <div class="sub">士氣（下一攻 +5%）：<span id="pMomentum">無</span></div>
+        <div class="sub">技能冷卻：<span id="pCD">0</span></div>
+      </div>
+
+      <div class="scoreBox">
+        <div class="label">電腦</div>
+        <div class="name" id="aiName">未選角</div>
+        <div class="score" id="aScore">0</div>
+        <div class="sub">士氣（下一攻 +5%）：<span id="aMomentum">無</span></div>
+        <div class="sub">技能冷卻：<span id="aCD">0</span></div>
+      </div>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div class="selectRow">
+      <div class="selectBox">
+        <div class="h">玩家角色</div>
+        <select id="playerSelect"></select>
+      </div>
+      <div class="selectBox">
+        <div class="h">電腦對手</div>
+        <select id="aiSelect"></select>
+      </div>
+<button id="startBtn">開始比賽</button>
+<button id="restartBtn" class="ghost">再來一局</button>
+<button id="statsBtn" class="ghost">數據</button>
+<button id="homeBtn" class="ghost">回首頁</button>
+    </div>
+
+    <div class="actions">
+      <div class="actionCol">
+        <div class="h" id="actionTitle">操作區</div>
+        <div class="btnRow">
+          <button class="btn" id="btnDrive">突破</button>
+          <button class="btn" id="btnMid">中距</button>
+          <button class="btn" id="btnThree">三分</button>
+        </div>
+        <div class="btnRow">
+          <button class="btn skill" id="btnSkill">使用技能</button>
+        </div>
+      </div>
+
+      <div class="logCol">
+        <div class="h">比賽紀錄</div>
+        <div class="log" id="log"></div>
+      </div>
+    </div>
+  </section>
+</div>
+  
+<!-- POSTGAME STATS SCREEN -->
+<section id="screenStats" class="panel screen hidden">
+  <div class="codexHeader">
+    <h2>賽後數據</h2>
+    <div class="codexTools">
+      <button id="statsBack" class="ghost">回對戰</button>
+    </div>
+  </div>
+
+  <div class="panel" style="padding:14px;">
+    <div id="postStatsContent" class="statsWrap"></div>
+  </div>
+</section>
+
+<!-- ============================= -->
+<!-- ⭐ Ranked Mode Panel -->
+<!-- ============================= -->
+<div id="rank-panel" style="
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-family: sans-serif;
+  z-index: 9999;
+">
+  <div id="rank-title" style="font-weight:bold; margin-bottom:6px;">
+    排位賽
+  </div>
+  <div id="rank-display">—</div>
+</div>
+
+<!-- Mode Switch -->
+<div id="mode-bar" style="
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+  display: flex;
+  gap: 8px;
+  font-family: sans-serif;
+">
+  <button id="btn-casual" type="button" onclick="setModeCasual()">一般</button>
+  <button id="btn-ranked" type="button" onclick="setModeRanked()">排位</button>
+</div>

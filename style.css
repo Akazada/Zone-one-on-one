@@ -1,0 +1,427 @@
+body{
+  margin:0;
+  font-family:system-ui,"Noto Sans TC",sans-serif;
+  background:#0e1022;
+  color:#e8ecff;
+}
+
+.app{
+  max-width:1100px;
+  margin:auto;
+  padding:16px
+}
+
+/* ===== Header / Panel ===== */
+.top,.panel{
+  background:#171b2f;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:12px;
+}
+
+/* ===== Screen Control ===== */
+.screen{
+  animation: fadeIn .2s ease;
+}
+
+.hidden{
+  display:none !important;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(4px)}
+  to{opacity:1; transform:none}
+}
+
+/* ===== Top Meta ===== */
+.meta{
+  display:flex;
+  gap:16px;
+  color:#a6b0ff
+}
+
+.clock{color:#ffd66b}
+
+/* ===== Score ===== */
+.scoreRow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px
+}
+
+.scoreBox{
+  background:#11142a;
+  border-radius:12px;
+  padding:12px
+}
+
+.score{
+  font-size:40px;
+  font-weight:800
+}
+
+.sub{
+  color:#a6b0ff;
+  font-size:12px
+}
+
+.status{
+  margin:10px 0
+}
+
+/* ===== Select / Buttons ===== */
+.selectRow{
+  display:grid;
+  grid-template-columns:1fr 1fr auto auto auto;
+  gap:8px
+}
+
+select,button{
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  font-weight:700
+}
+
+button{
+  background:#7aa2ff;
+  color:#000;
+  cursor:pointer
+}
+
+button.ghost{
+  background:transparent;
+  color:#fff;
+  border:1px solid #2a2f52
+}
+
+/* ===== Actions / Log ===== */
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:12px
+}
+
+.actionCol,.logCol{
+  background:#11142a;
+  border-radius:12px;
+  padding:12px
+}
+
+.btnRow{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+.log{
+  height:300px;
+  overflow:auto;
+  background:#00000033;
+  padding:8px;
+  border-radius:8px
+}
+/* ===== Codex ===== */
+.codexWrap{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:12px;
+}
+
+.codexList{
+  background:#11142a;
+  border-radius:12px;
+  padding:10px;
+  max-height:520px;
+  overflow:auto;
+}
+
+.codexCard{
+  border:1px solid #2a2f52;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:10px;
+  cursor:pointer;
+  background: #0f1230;
+}
+
+.codexCard:hover{
+  filter:brightness(1.08);
+}
+
+.codexName{
+  font-weight:900;
+  font-size:16px;
+}
+
+.codexSkill{
+  margin-top:6px;
+  font-size:12px;
+  opacity:.75;
+}
+
+.codexDetail{
+  background:#11142a;
+  border-radius:12px;
+  padding:12px;
+  min-height:260px;
+}
+
+.statGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.statItem{
+  background:#00000022;
+  border:1px solid #2a2f52;
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:13px;
+}
+
+.statKey{opacity:.7; font-size:12px;}
+.statVal{font-weight:900; font-size:16px;}
+
+@media (max-width: 860px){
+  .codexWrap{grid-template-columns: 1fr;}
+  .codexList{max-height:320px;}
+}
+/* ===== Codex Grid ===== */
+.codexGrid{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card{
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  cursor: pointer;
+}
+.card:active{ transform: scale(.99); }
+
+.cardTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.cardName{
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.badge{
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(120,170,255,.18);
+  border: 1px solid rgba(120,170,255,.35);
+  white-space: nowrap;
+}
+
+.cardSub{
+  margin-top: 10px;
+  opacity: .8;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* ===== Modal ===== */
+.modal{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+  z-index: 999;
+}
+
+.modalBox{
+  width: min(520px, 100%);
+  border-radius: 18px;
+  background: #0f1426;
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 20px 80px rgba(0,0,0,.5);
+  overflow: hidden;
+}
+
+.modalHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 14px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.modalTitle{
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.modalBody{
+  padding: 14px;
+}
+
+.pillRow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom: 12px;
+}
+
+.pill{
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.statsGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat{
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.stat .k{ opacity:.75; font-size:12px; }
+.stat .v{ font-size:16px; font-weight:900; margin-top:4px; }
+
+.desc{
+  margin-top: 12px;
+  opacity: .85;
+  font-size: 13px;
+  line-height: 1.6;
+}
+/* =========================
+   Codex 字體顏色統一為白色
+========================= */
+
+#screenCodex {
+  color: #ffffff;
+}
+
+#screenCodex input,
+#screenCodex select,
+#screenCodex button {
+  color: #ffffff;
+}
+
+#screenCodex input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+/* 卡片內文字 */
+.codexCard,
+.codexCardName,
+.codexMiniStats span {
+  color: #ffffff;
+}
+
+/* Modal 內文字 */
+#codexModal {
+  color: #ffffff;
+}
+/* =========================
+   Codex 搜尋框可讀性修正
+========================= */
+
+#screenCodex input {
+  background: rgba(255, 255, 255, 0.12); /* 深色底 */
+  color: #ffffff;                       /* 白字 */
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+#screenCodex input::placeholder {
+  color: rgba(255,255,255,0.6);         /* 提示字淡白 */
+}
+
+#screenCodex input:focus {
+  outline: none;
+  border-color: #7aa2ff;                /* 聚焦藍色 */
+  background: rgba(255,255,255,0.18);
+}
+/* 能力總和顯示 */
+.codexTotal {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffd36a; /* 賽爾號感的金色 */
+  text-align: center;
+}
+.postStatsTableWrap{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+.postStatsTable{
+  display:inline-block;
+  min-width:max-content;
+  border-radius:14px;
+}
+
+.pstRow{
+  display:flex;
+  gap:8px;
+  padding:6px 0;
+}
+
+.pstHead .pstCell{
+  font-weight:700;
+  opacity:.9;
+}
+
+.pstCell{
+  min-width:96px;
+  padding:10px 10px;
+  text-align:center;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  white-space:nowrap; /* 重要：不換行 */
+  font-size:14px;
+}
+
+.pstSticky{
+  left:0;
+  z-index:2;
+  min-width:170px;
+  text-align:left;
+  padding-left:14px;
+  background:rgba(10,14,30,.92); /* 蓋過去避免滑動穿透 */
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.pstName{
+  font-weight:700;
+}
+
+#mode-bar button{
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  cursor: pointer;
+}
+#mode-bar button.active{
+  background: rgba(255,255,255,0.9);
+  color: #000;
+  border-color: rgba(0,0,0,0.2);
+}
